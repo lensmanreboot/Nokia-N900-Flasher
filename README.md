@@ -91,8 +91,7 @@ To create a desktop shortcut so the app appears in your system Application Menu 
   3. **Flash Both Together (Full Clean Reset)**: Flashes eMMC first, automatically pauses with guided prompts to reset the battery (re-entering NOLO mode with `U`), and then flashes Firmware with auto-reboot.
   4. **☠ Dead Mode (Cold Flash Recovery)**: Revives hard-bricked N900 units that cannot boot or do not respond to holding the `U` key. Uses OMAP3430 silicon BootROM peripheral boot (`-c -S usb -h <HW_REV>`) with selectable hardware revisions (`RX-51:2202`, `2120`, `2301`, `2401`, `2501`, `2601`, etc.).
 
-* **Nokia Infinity BEST Industrial UI**:
-  * Sharp, high-contrast dark theme.
+* **Modern Dark UI & Live Hardware Monitoring**:
   * Real-time phosphor green console with an integrated bottom progress bar.
   * Live hardware detection badge (`⚪ Waiting` / `🟡 Connected` / `🟢 Ready (NOLO Flash Mode)`).
 

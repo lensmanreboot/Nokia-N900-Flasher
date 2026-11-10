@@ -458,7 +458,7 @@ class N900FlasherWindow(Gtk.Window):
         action_bar.pack_start(self.btn_cancel, False, False, 0)
         top_box.pack_start(action_bar, False, False, 0)
 
-        # --- Flashing Modes & USB Settings Panel (Infinity BEST Style) ---
+        # --- Flashing Modes & USB Settings Panel ---
         settings_frame = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
         settings_frame.get_style_context().add_class("panel-box")
 
