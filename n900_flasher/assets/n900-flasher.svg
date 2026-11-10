@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c3440" />
+      <stop offset="100%" stop-color="#141820" />
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#192a3e" />
+      <stop offset="100%" stop-color="#0e1722" />
+    </linearGradient>
+    <linearGradient id="boltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd000" />
+      <stop offset="100%" stop-color="#ff7700" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Outer Rounded Phone Body -->
+  <rect x="18" y="14" width="92" height="100" rx="14" fill="url(#bodyGrad)" stroke="#4a5568" stroke-width="2" />
+  
+  <!-- Subtle Bezel Highlight -->
+  <rect x="22" y="18" width="84" height="92" rx="10" fill="none" stroke="#333f50" stroke-width="1.5" />
+
+  <!-- Screen Frame -->
+  <rect x="26" y="24" width="76" height="80" rx="6" fill="url(#screenGrad)" stroke="#1a2332" stroke-width="1" />
+
+  <!-- Camera / Sensor dots at top -->
+  <circle cx="36" cy="20" r="1.5" fill="#4a5568" />
+  <circle cx="92" cy="20" r="2" fill="#2d3748" />
+
+  <!-- Maemo Topbar hint -->
+  <rect x="28" y="26" width="72" height="7" rx="2" fill="#0077b6" opacity="0.65" />
+  <circle cx="32" cy="29.5" r="1.5" fill="#ffffff" opacity="0.8" />
+  <circle cx="95" cy="29.5" r="1.5" fill="#00ff88" />
+
+  <!-- Nokia Logo Text in Screen -->
+  <text x="64" y="47" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" font-size="9" fill="#94a3b8" text-anchor="middle" letter-spacing="1.5">NOKIA</text>
+
+  <!-- Big Flashing / Lightning Symbol in center of screen -->
+  <polygon points="68,52 50,74 63,74 58,95 78,70 65,70" fill="url(#boltGrad)" filter="url(#glow)" />
+
+  <!-- USB connection indicator at bottom-left corner -->
+  <circle cx="37" cy="94" r="5" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+  <path d="M37,90 L37,98 M34,92 L37,90 L40,92" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Keyboard edge slide hint on left -->
+  <path d="M15,35 L15,93" stroke="#00b4d8" stroke-width="2" stroke-linecap="round" opacity="0.8" />
+  <path d="M11,45 L11,83" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" opacity="0.5" />
+</svg>

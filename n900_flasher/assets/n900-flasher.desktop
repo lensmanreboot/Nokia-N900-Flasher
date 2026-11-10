@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=N900 Flasher
+GenericName=N900 Flasher
+Comment=Flash eMMC storage and FIASCO firmware on Nokia N900
+Exec=n900-flasher
+Icon=n900-flasher
+Terminal=false
+Categories=Utility;System;Development;
+Keywords=nokia;n900;maemo;flasher;fiasco;emmc;rx-51;
+StartupNotify=true

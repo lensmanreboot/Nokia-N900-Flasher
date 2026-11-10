@@ -1,0 +1,11 @@
+# Udev rules for Nokia N900 (RX-51) Flasher
+# Grants desktop users direct access to USB flash mode without needing root/sudo
+
+# Nokia N900 in Flashing / NOLO Bootloader Mode
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0421", ATTRS{idProduct}=="0105", MODE="0666", GROUP="plugdev", TAG+="uaccess"
+
+# Nokia N900 in Cold Flash / Calypso Mode
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0421", ATTRS{idProduct}=="01c8", MODE="0666", GROUP="plugdev", TAG+="uaccess"
+
+# General Nokia USB fallback rule for flashing mode
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0421", MODE="0666", GROUP="plugdev", TAG+="uaccess"

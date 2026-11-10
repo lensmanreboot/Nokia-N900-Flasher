@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=N900 Flasher
+GenericName=N900 Flasher Portable
+Comment=Flash eMMC and Firmware on Nokia N900 (100% Offline Portable)
+Exec=sh -c 'cd "$(dirname "%k")" && ./N900-Flasher'
+Icon=./n900_flasher/assets/n900-flasher.svg
+Terminal=false
+Categories=Utility;System;Development;
+StartupNotify=true

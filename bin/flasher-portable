@@ -1,0 +1,16 @@
+#!/bin/sh
+# Portable launcher for Nokia flasher-3.5 using bundled 32-bit libraries
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+APP_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+if [ -f "$APP_DIR/lib32/ld-linux.so.2" ] && [ -f "$APP_DIR/lib32/libusb-0.1.so.4" ]; then
+    exec "$APP_DIR/lib32/ld-linux.so.2" --library-path "$APP_DIR/lib32" "$APP_DIR/bin/flasher-3.5" "$@"
+fi
+
+if [ -x "$APP_DIR/bin/flasher-3.5" ]; then
+    exec "$APP_DIR/bin/flasher-3.5" "$@"
+fi
+
+exec flasher-3.5 "$@"
