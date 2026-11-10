@@ -14,6 +14,35 @@ This application is **100% self-contained and portable**. It includes the offici
 
 ---
 
+## 📥 Download & Install from Terminal (Git Method)
+
+If you prefer cloning directly from GitHub without downloading the release `.tar.gz`:
+
+### 1. Install prerequisites (Python 3 & GTK 3)
+```bash
+sudo apt update && sudo apt install -y git python3 python3-gi python3-gi-cairo gir1.2-gtk-3.0
+```
+
+### 2. Clone the repository
+```bash
+git clone https://github.com/lensmanreboot/Nokia-N900-Flasher.git
+cd Nokia-N900-Flasher
+```
+
+### 3. Launch directly from terminal
+```bash
+./N900-Flasher
+```
+
+### 4. (Optional) Add to System Application Menu
+To create a desktop shortcut so the app appears in your system Application Menu (with icon):
+```bash
+./install-desktop-shortcut.sh
+```
+> *Once run, you can press your Super/Windows key and search for **"Nokia N900 Flasher"** to launch it anytime.*
+
+---
+
 ## 🚀 Key Features
 
 * **Zero-Install Portable 32-bit Runtime**:
@@ -84,9 +113,10 @@ This application is **100% self-contained and portable**. It includes the offici
 ## 📁 Directory Structure
 
 ```text
-N900 Flasher Portable/
+Nokia-N900-Flasher/
 ├── N900-Flasher                  # Direct 64-bit ELF binary launcher
 ├── start.sh                      # Alternative shell script launcher
+├── install-desktop-shortcut.sh   # Installs launcher shortcut into Linux Application Menu
 ├── Launch-N900-Flasher.desktop   # Desktop shortcut entry
 ├── bin/
 │   ├── flasher-3.5               # Official Nokia flasher-3.5 binary (32-bit)
