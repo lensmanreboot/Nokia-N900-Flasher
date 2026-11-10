@@ -2,6 +2,40 @@
 
 A standalone graphical flasher application for the **Nokia N900 (RX-51 / Maemo 5 Fremantle)** on 64-bit Linux (Debian, Ubuntu, Linux Mint, and derivatives).
 
+[![GitHub Release](https://img.shields.io/github/v/release/lensmanreboot/Nokia-N900-Flasher?style=flat-square&color=22c55e&label=Latest%20Release)](https://github.com/lensmanreboot/Nokia-N900-Flasher/releases/latest)
+
+---
+
+### 📌 Quick Navigation
+* [📦 **Download Releases (Pre-built Package)**](#releases)
+* [⚡ **Quick Start**](#-quick-start)
+* [📥 **Install from Terminal (Git Method)**](#-download--install-from-terminal-git-method)
+* [🚀 **Key Features**](#-key-features)
+* [📖 **Flashing Guide**](#-flashing-instructions)
+
+---
+
+<a id="releases"></a>
+## 📦 Releases & Download
+
+Pre-packaged portable releases with all 32-bit libraries bundled and ready to run:
+
+| Release | Download Link | Description | Size |
+| :--- | :--- | :--- | :--- |
+| **v1.0.0 (Latest)** | [**n900-flasher-portable-linux.tar.gz**](https://github.com/lensmanreboot/Nokia-N900-Flasher/releases/download/v1.0.0/n900-flasher-portable-linux.tar.gz) | Complete standalone portable bundle | ~1.2 MB |
+
+> [!TIP]
+> You can also browse all versions and changelogs on the [**GitHub Releases Page**](https://github.com/lensmanreboot/Nokia-N900-Flasher/releases).
+
+#### How to run the downloaded package:
+1. Extract the downloaded `.tar.gz` archive:
+   ```bash
+   tar -xzvf n900-flasher-portable-linux.tar.gz
+   cd "N900 Flasher Portable"
+   ```
+2. Double-click **`N900-Flasher`** to launch!
+3. *(Optional)* Run `./install-desktop-shortcut.sh` to add the app to your desktop Application Menu.
+
 ---
 
 ## ⚡ Quick Start
@@ -107,20 +141,3 @@ To create a desktop shortcut so the app appears in your system Application Menu 
      1. **Plug the USB cable** into the phone.
      2. **Immediately reinsert the battery**.
 7. The flasher will intercept the TI OMAP BootROM, upload the secondary bootloader, and restore the firmware.
-
----
-
-## 📁 Directory Structure
-
-```text
-Nokia-N900-Flasher/
-├── N900-Flasher                  # Direct 64-bit ELF binary launcher
-├── start.sh                      # Alternative shell script launcher
-├── install-desktop-shortcut.sh   # Installs launcher shortcut into Linux Application Menu
-├── Launch-N900-Flasher.desktop   # Desktop shortcut entry
-├── bin/
-│   ├── flasher-3.5               # Official Nokia flasher-3.5 binary (32-bit)
-│   └── flasher-portable          # Portable runtime wrapper script
-├── lib32/                        # Bundled 32-bit libraries (ld-linux, libc, libusb)
-└── n900_flasher/                 # Application Python source code and assets
-```
