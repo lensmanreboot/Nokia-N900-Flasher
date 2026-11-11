@@ -535,10 +535,11 @@ class N900FlasherWindow(Gtk.Window):
         self.cmb_order.set_active(0)
         row2.pack_start(self.cmb_order, False, False, 0)
 
-        self.chk_reconnect_pause = Gtk.CheckButton(label="Auto-continue after battery reset (Hold 'U')")
-        self.chk_reconnect_pause.set_active(True)
+        self.chk_reconnect_pause = Gtk.CheckButton(label="Pause for battery reset between steps")
+        self.chk_reconnect_pause.set_active(False)
         self.chk_reconnect_pause.set_tooltip_text(
-            "Recommended for full flash: Pauses after eMMC and automatically starts Firmware flashing the moment you reconnect holding 'U'."
+            "Default (Unchecked): Flashes eMMC and Firmware back-to-back seamlessly without unplugging USB, exactly like terminal flasher.\n"
+            "Checked: Pauses after step 1 to allow pulling/re-inserting the battery if flashing hangs."
         )
         row2.pack_start(self.chk_reconnect_pause, False, False, 0)
         settings_frame.pack_start(row2, False, False, 0)
@@ -565,6 +566,14 @@ class N900FlasherWindow(Gtk.Window):
         btn_clear_log = Gtk.Button(label="Clear")
         btn_clear_log.connect("clicked", self._on_clear_log_clicked)
         console_hdr.pack_end(btn_clear_log, False, False, 0)
+
+        btn_quick_reboot = Gtk.Button(label="🔄 Reboot Device (-R)")
+        btn_quick_reboot.set_tooltip_text("Send immediate -R reboot signal to Nokia N900")
+        btn_quick_reboot.connect(
+            "clicked",
+            lambda w: self._run_single_command("Reboot Device", self.builder.build_reboot(self.chk_pkexec.get_active())),
+        )
+        console_hdr.pack_end(btn_quick_reboot, False, False, 0)
 
         bottom_box.pack_start(console_hdr, False, False, 0)
 
@@ -880,7 +889,7 @@ class N900FlasherWindow(Gtk.Window):
         if not self.emmc_path:
             return
         use_pkexec = self.chk_pkexec.get_active()
-        cmd = self.builder.build_emmc(self.emmc_path, use_pkexec)
+        cmd = self.builder.build_emmc(self.emmc_path, reboot=False, use_pkexec=use_pkexec)
         self._run_flasher_sequence([("Flash eMMC Only", cmd)])
 
     def _on_flash_fw_clicked(self, widget):
@@ -890,7 +899,7 @@ class N900FlasherWindow(Gtk.Window):
         if not self.firmware_path:
             return
         use_pkexec = self.chk_pkexec.get_active()
-        cmd = self.builder.build_firmware(self.firmware_path, use_pkexec)
+        cmd = self.builder.build_firmware(self.firmware_path, reboot=True, use_pkexec=use_pkexec)
         self._run_flasher_sequence([("Flash Firmware Only", cmd)])
 
     def _on_flash_both_clicked(self, widget):
@@ -919,6 +928,12 @@ class N900FlasherWindow(Gtk.Window):
         btn_proceed = dialog.add_button("Proceed with Full Flash", Gtk.ResponseType.OK)
         btn_proceed.get_style_context().add_class("btn-full")
 
+        pause_note = (
+            "<i>Note: 'Pause for battery reset' is enabled. The app will pause between steps.</i>"
+            if self.chk_reconnect_pause.get_active()
+            else "<i>Note: Flashing will run seamlessly back-to-back, then automatically reboot into Maemo.</i>"
+        )
+
         msg = (
             f"You are about to flash both images to your Nokia N900:\n\n"
             f"• <b>eMMC Image:</b> {os.path.basename(self.emmc_path)}\n"
@@ -926,7 +941,7 @@ class N900FlasherWindow(Gtk.Window):
             f"<b>Sequence Order:</b> {order_text}\n\n"
             f"⚠️ <b>WARNING:</b> This will completely repartition and erase all internal user data!\n\n"
             f"Ensure your Nokia N900 battery is above 50%.\n"
-            f"<i>Note: The app will pause after the first step and guide you to reset the battery and hold 'U' before flashing the second image.</i>"
+            f"{pause_note}"
         )
         dialog.format_secondary_markup(msg)
         response = dialog.run()

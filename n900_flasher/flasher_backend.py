@@ -117,14 +117,14 @@ class FlasherCommandBuilder:
             return ["pkexec"] + cmd
         return cmd
 
-    def build_emmc(self, emmc_file: str, reboot: bool = False, use_pkexec: bool = False) -> List[str]:
+    def build_emmc(self, emmc_file: str, *, reboot: bool = False, use_pkexec: bool = False) -> List[str]:
         """eMMC flashing command: flasher-3.5 -F <emmc_file> -f [-R]"""
         cmd = [self.binary_path, "-F", os.path.abspath(emmc_file), "-f"]
         if reboot:
             cmd.append("-R")
         return self.wrap_privilege(cmd, use_pkexec)
 
-    def build_firmware(self, fw_file: str, reboot: bool = True, use_pkexec: bool = False) -> List[str]:
+    def build_firmware(self, fw_file: str, *, reboot: bool = True, use_pkexec: bool = False) -> List[str]:
         """Firmware flashing command: flasher-3.5 -F <fw_file> -f [-R]"""
         cmd = [self.binary_path, "-F", os.path.abspath(fw_file), "-f"]
         if reboot:
@@ -134,6 +134,7 @@ class FlasherCommandBuilder:
     def build_cold_flash(
         self,
         fw_file: str,
+        *,
         reboot: bool = True,
         use_pkexec: bool = False,
         hw_revision: str = "RX-51:2202",
